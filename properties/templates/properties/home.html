@@ -1,0 +1,134 @@
+{% extends 'properties/base.html' %}
+{% load static %}
+
+{% block content %}
+<!-- Hero Section -->
+<section class="hero-section">
+    <div class="container text-center">
+        <h1 class="hero-title">Discover Your Dream Property</h1>
+        <p class="hero-subtitle">Premium real estate services for discerning clients</p>
+        <a href="{% url 'property_list' %}" class="btn btn-primary-custom btn-lg">Browse Properties</a>
+    </div>
+</section>
+
+<!-- Featured Properties -->
+<section class="py-5 bg-white">
+    <div class="container">
+        <h2 class="section-title">Featured Properties</h2>
+        <div class="row">
+            {% for property in featured_properties %}
+            <div class="col-lg-4 col-md-6">
+                <div class="property-card">
+                    <div class="position-relative">
+                        <img src="{{ property.main_photo.url }}" alt="{{ property.title }}" class="property-img">
+                        <span class="property-badge">{{ property.get_transaction_type_display }}</span>
+                    </div>
+                    <div class="p-4">
+                        <h5>{{ property.title }}</h5>
+                        <p class="text-muted mb-3">
+                            <i class="fas fa-map-marker-alt text-secondary me-2"></i>
+                            {{ property.location }}, {{ property.city }}
+                        </p>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div>
+                                {% if property.bedrooms %}
+                                <span class="me-3"><i class="fas fa-bed text-secondary me-1"></i> {{ property.bedrooms }}</span>
+                                {% endif %}
+                                {% if property.bathrooms %}
+                                <span><i class="fas fa-bath text-secondary me-1"></i> {{ property.bathrooms }}</span>
+                                {% endif %}
+                            </div>
+                            <span class="property-price">₹{{ property.price|floatformat:"0" }}</span>
+                        </div>
+                    </div>
+                    <div class="px-4 pb-4 pt-2">
+                        <a href="{% url 'property_detail' property.pk %}" class="btn btn-primary-custom w-100">View Details</a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        <div class="text-center mt-4">
+            <a href="{% url 'property_list' %}" class="btn btn-outline-primary-custom">View All Properties</a>
+        </div>
+    </div>
+</section>
+
+<!-- Services Section -->
+<section class="py-5 bg-light">
+    <div class="container">
+        <h2 class="section-title">Our Services</h2>
+        <div class="row">
+            <div class="col-md-4 mb-4">
+                <div class="text-center p-4 bg-white rounded shadow-sm">
+                    <div class="icon-box bg-primary-light mb-3">
+                        <i class="fas fa-home fa-2x text-primary"></i>
+                    </div>
+                    <h4>Property Sales</h4>
+                    <p class="text-muted">Find your dream home from our exclusive collection of premium properties.</p>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="text-center p-4 bg-white rounded shadow-sm">
+                    <div class="icon-box bg-primary-light mb-3">
+                        <i class="fas fa-key fa-2x text-primary"></i>
+                    </div>
+                    <h4>Property Rental</h4>
+                    <p class="text-muted">Luxury rental properties with premium amenities and services.</p>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="text-center p-4 bg-white rounded shadow-sm">
+                    <div class="icon-box bg-primary-light mb-3">
+                        <i class="fas fa-search-dollar fa-2x text-primary"></i>
+                    </div>
+                    <h4>Property Valuation</h4>
+                    <p class="text-muted">Accurate market valuations for your property by our experts.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Testimonials -->
+<section class="py-5 bg-white">
+    <div class="container">
+        <h2 class="section-title">Client Testimonials</h2>
+        <div class="row">
+            <div class="col-md-4 mb-4">
+                <div class="testimonial-card">
+                    <img src="https://randomuser.me/api/portraits/women/32.jpg" alt="Client" class="testimonial-img mx-auto d-block">
+                    <p class="text-center mb-4">"LuxuryEstate helped me find my dream home in record time. Their service was exceptional!"</p>
+                    <h5 class="text-center mb-1">Sarah Johnson</h5>
+                    <p class="text-muted text-center">Homeowner</p>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="testimonial-card">
+                    <img src="https://randomuser.me/api/portraits/men/41.jpg" alt="Client" class="testimonial-img mx-auto d-block">
+                    <p class="text-center mb-4">"The team's market knowledge and negotiation skills got us 15% above asking price!"</p>
+                    <h5 class="text-center mb-1">Michael Chen</h5>
+                    <p class="text-muted text-center">Property Investor</p>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="testimonial-card">
+                    <img src="https://randomuser.me/api/portraits/women/63.jpg" alt="Client" class="testimonial-img mx-auto d-block">
+                    <p class="text-center mb-4">"Professional, attentive, and truly understands luxury real estate. Highly recommended!"</p>
+                    <h5 class="text-center mb-1">Emily Rodriguez</h5>
+                    <p class="text-muted text-center">Luxury Home Buyer</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Call to Action -->
+<section class="py-5 bg-primary text-white">
+    <div class="container text-center">
+        <h2 class="mb-4">Ready to Find Your Dream Property?</h2>
+        <p class="lead mb-5">Our team of experts is ready to assist you in finding the perfect home or investment property.</p>
+        <a href="{% url 'contact' %}" class="btn btn-light btn-lg px-5">Contact Us Today</a>
+    </div>
+</section>
+{% endblock %}

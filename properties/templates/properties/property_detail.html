@@ -1,0 +1,281 @@
+{% extends 'properties/base.html' %}
+{% load static humanize %}
+
+{% block title %}{{ property.title }} | LuxuryEstate{% endblock %}
+
+{% block extra_css %}
+<style>
+
+</style>
+{% endblock %}
+
+{% block content %}
+<section class="py-5 bg-light">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8">
+                <!-- Property Gallery -->
+                <div class="property-gallery mb-5">
+                    <div class="main-image">
+                        <img src="{{ property.main_photo.url }}" alt="{{ property.title }}" class="img-fluid rounded w-100" style="height: 500px; object-fit: cover;">
+                    </div>
+                    <div class="gallery-thumbnails d-flex">
+                        <img src="{{ property.main_photo.url }}" alt="Thumbnail" class="thumbnail me-2 active" onclick="changeMainImage(this, '{{ property.main_photo.url }}')">
+                        {% if property.photo1 %}
+                        <img src="{{ property.photo1.url }}" alt="Thumbnail" class="thumbnail me-2" onclick="changeMainImage(this, '{{ property.photo1.url }}')">
+                        {% endif %}
+                        {% if property.photo2 %}
+                        <img src="{{ property.photo2.url }}" alt="Thumbnail" class="thumbnail me-2" onclick="changeMainImage(this, '{{ property.photo2.url }}')">
+                        {% endif %}
+                        {% if property.photo3 %}
+                        <img src="{{ property.photo3.url }}" alt="Thumbnail" class="thumbnail" onclick="changeMainImage(this, '{{ property.photo3.url }}')">
+                        {% endif %}
+                    </div>
+                </div>
+                
+                <!-- Property Details -->
+                <div class="card mb-5">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between align-items-start mb-4">
+                            <div>
+                                <h2 class="mb-1">{{ property.title }}</h2>
+                                <p class="text-muted mb-0">
+                                    <i class="fas fa-map-marker-alt text-secondary me-2"></i>
+                                    {{ property.location }}, {{ property.city }}
+                                </p>
+                            </div>
+                            <div class="text-end">
+                                <span class="badge bg-primary fs-6 mb-2">{{ property.get_transaction_type_display }}</span>
+                                <h3 class="text-primary mb-0">₹{{ property.price|intcomma }}</h3>
+                            </div>
+                        </div>
+                        
+                        <div class="row mb-4">
+                            <div class="col-md-6">
+                                <div class="property-feature">
+                                    <div class="feature-icon">
+                                        <i class="fas fa-home"></i>
+                                    </div>
+                                    <div>
+                                        <h6 class="mb-0">Property Type</h6>
+                                        <p class="text-muted mb-0">{{ property.get_property_type_display }}</p>
+                                    </div>
+                                </div>
+                                {% if property.bedrooms %}
+                                <div class="property-feature">
+                                    <div class="feature-icon">
+                                        <i class="fas fa-bed"></i>
+                                    </div>
+                                    <div>
+                                        <h6 class="mb-0">Bedrooms</h6>
+                                        <p class="text-muted mb-0">{{ property.bedrooms }}</p>
+                                    </div>
+                                </div>
+                                {% endif %}
+                            </div>
+                            <div class="col-md-6">
+                                {% if property.bathrooms %}
+                                <div class="property-feature">
+                                    <div class="feature-icon">
+                                        <i class="fas fa-bath"></i>
+                                    </div>
+                                    <div>
+                                        <h6 class="mb-0">Bathrooms</h6>
+                                        <p class="text-muted mb-0">{{ property.bathrooms }}</p>
+                                    </div>
+                                </div>
+                                {% endif %}
+                                <div class="property-feature">
+                                    <div class="feature-icon">
+                                        <i class="fas fa-ruler-combined"></i>
+                                    </div>
+                                    <div>
+                                        <h6 class="mb-0">Area</h6>
+                                        <p class="text-muted mb-0">{{ property.area }} m²</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <h4 class="mb-3">Description</h4>
+                        <p class="mb-4">{{ property.description }}</p>
+                        
+                        <h4 class="mb-3">Address</h4>
+                        <p class="mb-4">{{ property.address }}</p>
+                        
+                        <div class="map-container mb-4" style="height: 300px; background-color: #eee; display: flex; align-items: center; justify-content: center;">
+                            <p class="text-muted">Map would be displayed here</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Features & Amenities -->
+                <div class="card mb-5">
+                    <div class="card-body">
+                        <h4 class="mb-4">Features & Amenities</h4>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <ul class="list-unstyled">
+                                    <li class="mb-2"><i class="fas fa-check text-secondary me-2"></i> Swimming Pool</li>
+                                    <li class="mb-2"><i class="fas fa-check text-secondary me-2"></i> Gym</li>
+                                    <li class="mb-2"><i class="fas fa-check text-secondary me-2"></i> Security System</li>
+                                    <li class="mb-2"><i class="fas fa-check text-secondary me-2"></i> Central Air Conditioning</li>
+                                </ul>
+                            </div>
+                            <div class="col-md-6">
+                                <ul class="list-unstyled">
+                                    <li class="mb-2"><i class="fas fa-check text-secondary me-2"></i> Garage (2 cars)</li>
+                                    <li class="mb-2"><i class="fas fa-check text-secondary me-2"></i> Garden</li>
+                                    <li class="mb-2"><i class="fas fa-check text-secondary me-2"></i> Smart Home System</li>
+                                    <li class="mb-2"><i class="fas fa-check text-secondary me-2"></i> Walk-in Closet</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-lg-4">
+                <!-- Contact Form -->
+                <div class="card mb-4">
+                    <div class="card-header bg-primary text-white">
+                        <h5 class="mb-0">Schedule a Viewing</h5>
+                    </div>
+                    <div class="card-body">
+                        <form method="post" action="{% url 'property_detail' property.pk %}">
+                            {% csrf_token %}
+                            <div class="mb-3">
+                                <input type="text" class="form-control" name="name" placeholder="Your Name" required>
+                            </div>
+                            <div class="mb-3">
+                                <input type="email" class="form-control" name="email" placeholder="Your Email" required>
+                            </div>
+                            <div class="mb-3">
+                                <input type="tel" class="form-control" name="phone" placeholder="Phone Number" required>
+                            </div>
+                            <div class="mb-3">
+                                <textarea class="form-control" name="message" rows="4" placeholder="Your Message" required></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-primary-custom w-100">Send Message</button>
+                        </form>
+                    </div>
+                </div>
+                
+                <!-- Agent Info -->
+                <div class="card mb-4">
+                    <div class="card-header bg-primary text-white">
+                        <h5 class="mb-0">Listing Agent</h5>
+                    </div>
+                    <div class="card-body text-center">
+                        <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Agent" class="agent-img">
+                        <h5>Robert Johnson</h5>
+                        <p class="text-muted">Senior Property Consultant</p>
+                        <div class="d-flex justify-content-center">
+                            <a href="#" class="btn btn-sm btn-outline-secondary me-2">
+                                <i class="fas fa-phone-alt"></i>
+                            </a>
+                            <a href="#" class="btn btn-sm btn-outline-secondary me-2">
+                                <i class="fas fa-envelope"></i>
+                            </a>
+                            <a href="#" class="btn btn-sm btn-outline-secondary">
+                                <i class="fas fa-comment"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Mortgage Calculator -->
+                <div class="card">
+                    <div class="card-header bg-primary text-white">
+                        <h5 class="mb-0">Mortgage Calculator</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="mb-3">
+                            <label class="form-label">Home Value</label>
+                            <input type="text" class="form-control" value="${{ property.price|intcomma }}" readonly>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Down Payment</label>
+                            <input type="number" class="form-control" placeholder="$">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Loan Term (years)</label>
+                            <select class="form-select">
+                                <option>30</option>
+                                <option>20</option>
+                                <option>15</option>
+                                <option>10</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Interest Rate</label>
+                            <input type="number" class="form-control" placeholder="%">
+                        </div>
+                        <button class="btn btn-primary-custom w-100">Calculate</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Similar Properties -->
+<section class="py-5 bg-white">
+    <div class="container">
+        <h2 class="section-title">Similar Properties</h2>
+        <div class="row">
+            {% for property in similar_properties %}
+            <div class="col-md-6 col-lg-3 mb-4">
+                <div class="property-card h-100">
+                    <div class="position-relative">
+                        <img src="{{ property.main_photo.url }}" alt="{{ property.title }}" class="property-img">
+                        <span class="property-badge">{{ property.get_transaction_type_display }}</span>
+                    </div>
+                    <div class="p-4">
+                        <h5>{{ property.title }}</h5>
+                        <p class="text-muted mb-3">
+                            <i class="fas fa-map-marker-alt text-secondary me-2"></i>
+                            {{ property.location }}, {{ property.city }}
+                        </p>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div>
+                                {% if property.bedrooms %}
+                                <span class="me-3"><i class="fas fa-bed text-secondary me-1"></i> {{ property.bedrooms }}</span>
+                                {% endif %}
+                                {% if property.bathrooms %}
+                                <span><i class="fas fa-bath text-secondary me-1"></i> {{ property.bathrooms }}</span>
+                                {% endif %}
+                            </div>
+                            <span class="property-price">${{ property.price|intcomma }}</span>
+                        </div>
+                    </div>
+                    <div class="px-4 pb-4 pt-2">
+                        <a href="{% url 'property_detail' property.pk %}" class="btn btn-primary-custom w-100">View Details</a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    function changeMainImage(element, imageUrl) {
+        // Update main image
+        document.querySelector('.main-image img').src = imageUrl;
+        
+        // Update active thumbnail
+        document.querySelectorAll('.thumbnail').forEach(thumb => {
+            thumb.classList.remove('active');
+        });
+        element.classList.add('active');
+    }
+    
+    // Simple mortgage calculator functionality would go here
+    document.addEventListener('DOMContentLoaded', function() {
+        // Initialize any additional JavaScript for this page
+    });
+</script>
+{% endblock %}

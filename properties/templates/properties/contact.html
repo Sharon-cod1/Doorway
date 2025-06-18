@@ -1,0 +1,164 @@
+{% extends 'properties/base.html' %}
+{% load static %}
+
+{% block title %}Contact Us | LuxuryEstate{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<section class="hero-section" style="background-image: linear-gradient(rgba(42, 63, 84, 0.8), rgba(42, 63, 84, 0.8)), url('https://images.unsplash.com/photo-1512917774080-9991f1c4c750?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80')">
+    <div class="container text-center">
+        <h1 class="hero-title">Contact Us</h1>
+        <p class="hero-subtitle">We're here to help with all your real estate needs</p>
+    </div>
+</section>
+
+<!-- Contact Content -->
+<section class="py-5 bg-white">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 mb-5 mb-lg-0">
+                <h2 class="mb-4">Get In Touch</h2>
+                <p class="lead">Have questions about our properties or services? Reach out to us using the form or contact information below.</p>
+                
+                <div class="contact-info mt-5">
+                    <div class="d-flex mb-4">
+                        <div class="me-4 text-primary">
+                            <i class="fas fa-map-marker-alt fa-2x"></i>
+                        </div>
+                        <div>
+                            <h5>Our Office</h5>
+                            <p class="text-muted mb-0">123 Premium Avenue<br>Beverly Hills, CA 90210</p>
+                        </div>
+                    </div>
+                    
+                    <div class="d-flex mb-4">
+                        <div class="me-4 text-primary">
+                            <i class="fas fa-phone-alt fa-2x"></i>
+                        </div>
+                        <div>
+                            <h5>Phone</h5>
+                            <p class="text-muted mb-0">+1 (310) 555-1234<br>Mon-Fri, 9am-6pm PST</p>
+                        </div>
+                    </div>
+                    
+                    <div class="d-flex mb-4">
+                        <div class="me-4 text-primary">
+                            <i class="fas fa-envelope fa-2x"></i>
+                        </div>
+                        <div>
+                            <h5>Email</h5>
+                            <p class="text-muted mb-0">info@luxuryestate.com<br>We respond within 24 hours</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="social-links mt-5">
+                    <h5 class="mb-3">Follow Us</h5>
+                    <a href="#" class="btn btn-outline-secondary btn-sm me-2"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="btn btn-outline-secondary btn-sm me-2"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="btn btn-outline-secondary btn-sm me-2"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="btn btn-outline-secondary btn-sm me-2"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#" class="btn btn-outline-secondary btn-sm"><i class="fab fa-pinterest-p"></i></a>
+                </div>
+            </div>
+            
+            <div class="col-lg-6">
+                <div class="card border-0 shadow-sm">
+                    <div class="card-body p-5">
+                        <h3 class="mb-4">Send Us a Message</h3>
+                        <form method="post">
+                            {% csrf_token %}
+                            <div class="mb-3">
+                                <label for="name" class="form-label">Your Name</label>
+                                <input type="text" class="form-control" id="name" name="name" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="email" class="form-label">Email Address</label>
+                                <input type="email" class="form-control" id="email" name="email" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="phone" class="form-label">Phone Number</label>
+                                <input type="tel" class="form-control" id="phone" name="phone">
+                            </div>
+                            <div class="mb-3">
+                                <label for="subject" class="form-label">Subject</label>
+                                <select class="form-select" id="subject" name="subject" required>
+                                    <option value="" selected disabled>Select a subject</option>
+                                    <option value="Property Inquiry">Property Inquiry</option>
+                                    <option value="Schedule Viewing">Schedule Viewing</option>
+                                    <option value="Property Valuation">Property Valuation</option>
+                                    <option value="General Question">General Question</option>
+                                </select>
+                            </div>
+                            <div class="mb-4">
+                                <label for="message" class="form-label">Your Message</label>
+                                <textarea class="form-control" id="message" name="message" rows="5" required></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-primary-custom w-100">Send Message</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Map Section -->
+<section class="bg-light py-5">
+    <div class="container">
+        <div class="card border-0 shadow-sm">
+            <div class="card-body p-0">
+                <div class="map-container" style="height: 400px; background-color: #eee; display: flex; align-items: center; justify-content: center;">
+                    <p class="text-muted">Interactive map would be displayed here</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Offices Section -->
+<section class="py-5 bg-white">
+    <div class="container">
+        <h2 class="section-title">Our Offices</h2>
+        <p class="text-center mb-5">Visit us at one of our conveniently located offices</p>
+        
+        <div class="row">
+            <div class="col-md-4 mb-4">
+                <div class="card border-0 h-100">
+                    <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" class="card-img-top" alt="Office" style="height: 200px; object-fit: cover;">
+                    <div class="card-body">
+                        <h5 class="card-title">Beverly Hills</h5>
+                        <p class="text-muted">123 Premium Avenue<br>Beverly Hills, CA 90210</p>
+                        <p class="card-text"><i class="fas fa-phone-alt me-2 text-secondary"></i> +1 (310) 555-1234</p>
+                        <a href="#" class="btn btn-sm btn-outline-primary">Get Directions</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-4 mb-4">
+                <div class="card border-0 h-100">
+                    <img src="https://images.unsplash.com/photo-1497366811353-6870744d04b2?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" class="card-img-top" alt="Office" style="height: 200px; object-fit: cover;">
+                    <div class="card-body">
+                        <h5 class="card-title">New York</h5>
+                        <p class="text-muted">456 Luxury Boulevard<br>New York, NY 10001</p>
+                        <p class="card-text"><i class="fas fa-phone-alt me-2 text-secondary"></i> +1 (212) 555-5678</p>
+                        <a href="#" class="btn btn-sm btn-outline-primary">Get Directions</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-4 mb-4">
+                <div class="card border-0 h-100">
+                    <img src="https://images.unsplash.com/photo-1517502884422-41eaead166d4?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" class="card-img-top" alt="Office" style="height: 200px; object-fit: cover;">
+                    <div class="card-body">
+                        <h5 class="card-title">Miami</h5>
+                        <p class="text-muted">789 Ocean Drive<br>Miami, FL 33139</p>
+                        <p class="card-text"><i class="fas fa-phone-alt me-2 text-secondary"></i> +1 (305) 555-9012</p>
+                        <a href="#" class="btn btn-sm btn-outline-primary">Get Directions</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

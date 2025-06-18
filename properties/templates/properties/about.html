@@ -1,0 +1,172 @@
+{% extends 'properties/base.html' %}
+{% load static %}
+
+{% block title %}About Us | LuxuryEstate{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<section class="hero-section" style="background-image: linear-gradient(rgba(42, 63, 84, 0.8), rgba(42, 63, 84, 0.8)), url('https://images.unsplash.com/photo-1600880292203-757bb62b4baf?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80')">
+    <div class="container text-center">
+        <h1 class="hero-title">About LuxuryEstate</h1>
+        <p class="hero-subtitle">Premium real estate services for discerning clients</p>
+    </div>
+</section>
+
+<!-- About Content -->
+<section class="py-5 bg-white">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-6 mb-5 mb-lg-0">
+                <h2 class="mb-4">Our Story</h2>
+                <p class="lead">DOORWAY is a modern and user-friendly property rental and sales platform designed to simplify real estate transactions across India.</p>
+                <p>Whether you're looking to buy, sell, or rent residential or commercial properties, DOORWAY connects property seekers with verified listings and trusted agents.</p>
+                <p>Our mission is to bridge the gap between property owners and potential buyers or tenants through a secure, transparent, and hassle-free digital experience. With powerful search filters, detailed property insights, and real-time updates, DOORWAY empowers users to make informed decisions from the comfort of their homes.</p>
+                <a href="{% url 'property_list' %}" class="btn btn-primary-custom mt-3">View Our Properties</a>
+            </div>
+            <div class="col-lg-6">
+                <img src="https://images.unsplash.com/photo-1600585152220-90363fe7e115?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Our Office" class="img-fluid rounded shadow">
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Team Section -->
+<section class="py-5 bg-light">
+    <div class="container">
+        <h2 class="section-title">Meet Our Team</h2>
+        <p class="text-center mb-5">Our team of experienced professionals is dedicated to providing exceptional service.</p>
+        
+        <div class="row">
+            <div class="col-md-4 mb-4">
+                <div class="card border-0 text-center">
+                    <img src="https://randomuser.me/api/portraits/women/45.jpg" alt="Team Member" class="img-fluid rounded-circle mx-auto" style="width: 150px; height: 150px; object-fit: cover;">
+                    <div class="card-body">
+                        <h5 class="card-title">Sarah Williams</h5>
+                        <p class="text-muted">Founder & CEO</p>
+                        <p class="card-text">With over 20 years in luxury real estate, Sarah leads our team with vision and expertise.</p>
+                        <div class="social-links">
+                            <a href="#" class="text-secondary me-2"><i class="fab fa-linkedin-in"></i></a>
+                            <a href="#" class="text-secondary me-2"><i class="fab fa-twitter"></i></a>
+                            <a href="#" class="text-secondary"><i class="fas fa-envelope"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-4 mb-4">
+                <div class="card border-0 text-center">
+                    <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Team Member" class="img-fluid rounded-circle mx-auto" style="width: 150px; height: 150px; object-fit: cover;">
+                    <div class="card-body">
+                        <h5 class="card-title">Michael Johnson</h5>
+                        <p class="text-muted">Senior Agent</p>
+                        <p class="card-text">Specializing in luxury condos and penthouses, Michael has closed over $200M in sales.</p>
+                        <div class="social-links">
+                            <a href="#" class="text-secondary me-2"><i class="fab fa-linkedin-in"></i></a>
+                            <a href="#" class="text-secondary me-2"><i class="fab fa-twitter"></i></a>
+                            <a href="#" class="text-secondary"><i class="fas fa-envelope"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-4 mb-4">
+                <div class="card border-0 text-center">
+                    <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Team Member" class="img-fluid rounded-circle mx-auto" style="width: 150px; height: 150px; object-fit: cover;">
+                    <div class="card-body">
+                        <h5 class="card-title">Emily Rodriguez</h5>
+                        <p class="text-muted">Luxury Home Specialist</p>
+                        <p class="card-text">Emily's extensive network and market knowledge make her an invaluable asset to our clients.</p>
+                        <div class="social-links">
+                            <a href="#" class="text-secondary me-2"><i class="fab fa-linkedin-in"></i></a>
+                            <a href="#" class="text-secondary me-2"><i class="fab fa-twitter"></i></a>
+                            <a href="#" class="text-secondary"><i class="fas fa-envelope"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Stats Section -->
+<section class="py-5 bg-primary text-white">
+    <div class="container">
+        <div class="row text-center">
+            <div class="col-md-3 mb-4 mb-md-0">
+                <h3 class="display-4">500+</h3>
+                <p class="mb-0">Properties Sold</p>
+            </div>
+            <div class="col-md-3 mb-4 mb-md-0">
+                <h3 class="display-4">$2B+</h3>
+                <p class="mb-0">In Transactions</p>
+            </div>
+            <div class="col-md-3 mb-4 mb-md-0">
+                <h3 class="display-4">98%</h3>
+                <p class="mb-0">Client Satisfaction</p>
+            </div>
+            <div class="col-md-3">
+                <h3 class="display-4">15+</h3>
+                <p class="mb-0">Years Experience</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Testimonials -->
+<section class="py-5 bg-white">
+    <div class="container">
+        <h2 class="section-title">What Our Clients Say</h2>
+        
+        <div class="row">
+            <div class="col-md-6 mb-4">
+                <div class="testimonial-card h-100">
+                    <div class="d-flex align-items-center mb-4">
+                        <img src="https://randomuser.me/api/portraits/men/41.jpg" alt="Client" class="testimonial-img me-4">
+                        <div>
+                            <h5 class="mb-1">James Wilson</h5>
+                            <p class="text-muted mb-0">Luxury Home Buyer</p>
+                        </div>
+                    </div>
+                    <p>"The team at LuxuryEstate made finding our dream home an absolute pleasure. Their attention to detail and market knowledge were impressive."</p>
+                    <div class="rating">
+                        <i class="fas fa-star text-warning"></i>
+                        <i class="fas fa-star text-warning"></i>
+                        <i class="fas fa-star text-warning"></i>
+                        <i class="fas fa-star text-warning"></i>
+                        <i class="fas fa-star text-warning"></i>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-6 mb-4">
+                <div class="testimonial-card h-100">
+                    <div class="d-flex align-items-center mb-4">
+                        <img src="https://randomuser.me/api/portraits/women/63.jpg" alt="Client" class="testimonial-img me-4">
+                        <div>
+                            <h5 class="mb-1">Sophia Martinez</h5>
+                            <p class="text-muted mb-0">Property Investor</p>
+                        </div>
+                    </div>
+                    <p>"As an investor, I appreciate their analytical approach to property valuation. They helped me acquire a portfolio that's outperformed the market."</p>
+                    <div class="rating">
+                        <i class="fas fa-star text-warning"></i>
+                        <i class="fas fa-star text-warning"></i>
+                        <i class="fas fa-star text-warning"></i>
+                        <i class="fas fa-star text-warning"></i>
+                        <i class="fas fa-star text-warning"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Call to Action -->
+<section class="py-5 bg-light">
+    <div class="container text-center">
+        <h2 class="mb-4">Ready to Work With Us?</h2>
+        <p class="lead mb-5">Whether you're buying, selling, or renting, our team is here to provide exceptional service.</p>
+        <a href="{% url 'contact' %}" class="btn btn-primary-custom btn-lg px-5">Contact Us Today</a>
+    </div>
+</section>
+{% endblock %}
