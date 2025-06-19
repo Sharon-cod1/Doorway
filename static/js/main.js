@@ -126,3 +126,41 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 });
+
+// Image preview for property forms
+document.addEventListener('DOMContentLoaded', function() {
+    // Function to preview images before upload
+    function previewImage(input, previewId) {
+        const preview = document.getElementById(previewId);
+        const file = input.files[0];
+        const reader = new FileReader();
+        
+        reader.onload = function(e) {
+            preview.src = e.target.result;
+            preview.style.display = 'block';
+        }
+        
+        if (file) {
+            reader.readAsDataURL(file);
+        }
+    }
+    
+    // Set up previews for all image inputs
+    const imageInputs = document.querySelectorAll('input[type="file"][accept^="image/"]');
+    imageInputs.forEach(input => {
+        const previewId = input.id + '-preview';
+        let preview = document.getElementById(previewId);
+        
+        if (!preview) {
+            preview = document.createElement('img');
+            preview.id = previewId;
+            preview.className = 'image-preview';
+            preview.style.display = 'none';
+            input.parentNode.insertBefore(preview, input.nextSibling);
+        }
+        
+        input.addEventListener('change', function() {
+            previewImage(this, previewId);
+        });
+    });
+});

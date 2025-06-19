@@ -1,11 +1,10 @@
 from django.db import models
-
-from django.contrib.auth.models import User
-
+from django.contrib.auth import get_user_model
+from django.conf import settings
 from django.utils import timezone
+from django.urls import reverse
 
 class Property(models.Model):
-    
     PROPERTY_TYPES = [
         ('house', 'House'),
         ('apartment', 'Apartment'),
@@ -17,7 +16,7 @@ class Property(models.Model):
         ('sale', 'For Sale'),
         ('rent', 'For Rent'),
     ]
-    
+
     title = models.CharField(max_length=200)
     description = models.TextField()
     property_type = models.CharField(max_length=20, choices=PROPERTY_TYPES)
@@ -34,16 +33,20 @@ class Property(models.Model):
     photo2 = models.ImageField(upload_to='property_photos/', blank=True)
     photo3 = models.ImageField(upload_to='property_photos/', blank=True)
     is_featured = models.BooleanField(default=False)
-    is_published = models.BooleanField(default=True)
+    is_published = models.BooleanField(default=False)
     date_created = models.DateTimeField(default=timezone.now)
-    owner = models.ForeignKey(User, on_delete=models.CASCADE)
-    
+    owner = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='properties')
+
     def __str__(self):
         return self.title
-    
+
+    def get_absolute_url(self):
+        return reverse('property_detail', kwargs={'pk': self.pk})
+
     class Meta:
         verbose_name_plural = "Properties"
         ordering = ['-date_created']
+
 
 class ContactRequest(models.Model):
     property = models.ForeignKey(Property, on_delete=models.CASCADE)
@@ -52,6 +55,6 @@ class ContactRequest(models.Model):
     phone = models.CharField(max_length=20)
     message = models.TextField()
     date_sent = models.DateTimeField(default=timezone.now)
-    
+
     def __str__(self):
-        return f"Contact request for {self.property.title}"
+        return f"{self.name} - {self.property.title}"

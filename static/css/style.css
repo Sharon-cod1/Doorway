@@ -297,5 +297,59 @@ h1, h2, h3, h4, h5, h6 {
     }
 }
 
+/* Dashboard Styles */
+.dashboard-card {
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+.dashboard-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.property-status-badge {
+    font-size: 0.8rem;
+    padding: 5px 10px;
+    border-radius: 20px;
+}
+
+/* Form Styles */
+.property-form .form-group {
+    margin-bottom: 1.5rem;
+}
+
+.property-form label {
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+/* Responsive Table */
+@media (max-width: 768px) {
+    .table-responsive {
+        overflow-x: auto;
+    }
+}
+
+/* Action Buttons */
+.btn-action {
+    width: 40px;
+    height: 40px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+}
+
+/* Image Preview */
+.image-preview {
+    max-width: 200px;
+    max-height: 200px;
+    margin: 10px 0;
+    border: 1px dashed #ddd;
+    padding: 5px;
+    border-radius: 5px;
+}
 
 
