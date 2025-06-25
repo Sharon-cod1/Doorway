@@ -5,6 +5,7 @@ from django.utils.decorators import method_decorator
 from django.urls import reverse
 from .models import Property
 from .forms import ContactForm, PropertyForm
+from .recommendations import get_recommendations    
 
 
 # List view for all published properties with filtering
@@ -108,3 +109,11 @@ def edit_property(request, pk):
     else:
         form = PropertyForm(instance=property)
     return render(request, 'properties/edit_property.html', {'form': form})
+
+def property_detail(request, pk):
+    property = get_object_or_404(Property, pk=pk)
+    recommendations = get_recommendations(request.user.id) if request.user.is_authenticated else []
+    return render(request, 'property_detail.html', {
+        'property': property,
+        'recommendations': recommendations
+    })
