@@ -58,3 +58,14 @@ class ContactRequest(models.Model):
 
     def __str__(self):
         return f"{self.name} - {self.property.title}"
+    
+User = get_user_model()
+
+class UserInteraction(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    property = models.ForeignKey(Property, on_delete=models.CASCADE)
+    interaction_type = models.CharField(max_length=50)  # e.g., 'view', 'like'
+    timestamp = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"{self.user.username} - {self.interaction_type} - {self.property.title}"
