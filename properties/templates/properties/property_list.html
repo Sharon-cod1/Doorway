@@ -8,7 +8,7 @@
     <div class="container">
         <div class="row mb-5">
             <div class="col-lg-6">
-                <h2 class="section-title text-start">Premium Properties</h2>
+                <h2 class="section-title text-start">Find Your Favourite Properties</h2>
             </div>
             <div class="col-lg-6 text-lg-end">
                 <p class="mb-0">{{ properties.paginator.count }} premium properties found</p>
@@ -19,7 +19,7 @@
             <!-- Filters -->
             <div class="col-lg-3">
                 <div class="card mb-4">
-                    <div class="card-header bg-primary text-white">
+                    <div class="card-header text-white" style="background-color:#C28800;">
                         <h5 class="mb-0">Refine Search</h5>
                     </div>
                     <div class="card-body">
@@ -91,14 +91,14 @@
                 </div>
                 
                 <div class="card">
-                    <div class="card-header bg-primary text-white">
+                    <div class="card-header text-white" style="background-color:#C28800;">
                         <h5 class="mb-0">Featured Community</h5>
                     </div>
                     <div class="card-body">
                         <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Community" class="img-fluid mb-3 rounded">
-                        <h6>Oceanview Estates</h6>
-                        <p class="text-muted small">Exclusive gated community with ocean views and premium amenities.</p>
-                        <a href="#" class="btn btn-sm btn-outline-primary">Learn More</a>
+                        <h6>Hilltop Haven</h6>
+                        <p class="text-muted small">Experience unmatched tranquility and premium living in our hilltop property, offering breathtaking views, world-class amenities.</p>
+                        <a href="#" class="btn btn-sm btn-outline-danger">Learn More</a>
                     </div>
                 </div>
             </div>
@@ -129,7 +129,7 @@
                                             <span><i class="fas fa-bath text-secondary me-1"></i> {{ property.bathrooms }}</span>
                                             {% endif %}
                                         </div>
-                                        <span class="property-price">${{ property.price|intcomma }}</span>
+                                        <span class="property-price">₹{{ property.price|intcomma }}</span>
                                     </div>
                                 </div>
                                 <div class="px-4 pb-4 pt-2">

@@ -283,6 +283,29 @@ h1, h2, h3, h4, h5, h6 {
     object-fit: cover;
 }
 
+.navbar-brand {
+  font-family: 'Playfair Display', serif;
+  font-weight: 700;
+  font-size: 1.8rem;
+  letter-spacing: 1px;
+}
+
+.brand-text {
+  color: white;
+}
+
+.brand-accent {
+  color: var(--secondary-color); /* Already defined as #A5D6A7 in your root */
+}
+
+.custom-box {
+    background-color: #29592c; /* Light green */
+  }
+
+.custom-icon {
+    color: #B08D57; /* Golden-brown */
+}
+
 /* Map container */
 .map-container {
     height: 400px;
@@ -316,7 +339,7 @@ h1, h2, h3, h4, h5, h6 {
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark-custom fixed-top">
         <div class="container">
             <a class="navbar-brand" href="{% url 'home' %}">
-                <span class="brand-text">DOOR</span>WAY
+                <span class="brand-text">DOOR</span><span class="brand-accent">WAY</span>
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav">
                 <span class="navbar-toggler-icon"></span>
