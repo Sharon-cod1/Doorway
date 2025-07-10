@@ -10,8 +10,8 @@ def register(request):
             user = form.save()
             login(request, user)
             return redirect('dashboard')
-    else:
-        form = UserRegisterForm()
+    # else:
+        # form = UserRegisterForm()
     return render(request, 'accounts/register.html', {'form': form})
 
 def user_login(request):
