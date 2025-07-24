@@ -112,8 +112,18 @@ def edit_property(request, pk):
 
 def property_detail(request, pk):
     property = get_object_or_404(Property, pk=pk)
+
+    # Get similar properties: same city and same property type, excluding current one
+    similar_properties = Property.objects.filter(
+        city=property.city,
+        property_type=property.property_type,
+        is_published=True
+    ).exclude(pk=property.pk)[:4]
+
     recommendations = get_recommendations(request.user.id) if request.user.is_authenticated else []
+
     return render(request, 'property_detail.html', {
         'property': property,
-        'recommendations': recommendations
+        'recommendations': recommendations,
+        'similar_properties': similar_properties
     })

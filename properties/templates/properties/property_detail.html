@@ -5,7 +5,39 @@
 
 {% block extra_css %}
 <style>
+.thumbnail {
+    width: 100px;
+    height: 70px;
+    object-fit: cover;
+    border: 2px solid transparent;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: border-color 0.3s, transform 0.2s;
+}
 
+.thumbnail.active,
+.thumbnail:hover {
+    border-color: #0d6efd;
+    transform: scale(1.03);
+}
+
+.property-img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 0.5rem 0.5rem 0 0;
+}
+
+.property-badge {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background-color: #0d6efd;
+    color: #fff;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.75rem;
+    border-radius: 0.25rem;
+}
 </style>
 {% endblock %}
 
@@ -19,7 +51,7 @@
                     <div class="main-image">
                         <img src="{{ property.main_photo.url }}" alt="{{ property.title }}" class="img-fluid rounded w-100" style="height: 500px; object-fit: cover;">
                     </div>
-                    <div class="gallery-thumbnails d-flex">
+                    <div class="gallery-thumbnails d-flex mt-2">
                         <img src="{{ property.main_photo.url }}" alt="Thumbnail" class="thumbnail me-2 active" onclick="changeMainImage(this, '{{ property.main_photo.url }}')">
                         {% if property.photo1 %}
                         <img src="{{ property.photo1.url }}" alt="Thumbnail" class="thumbnail me-2" onclick="changeMainImage(this, '{{ property.photo1.url }}')">
@@ -32,7 +64,7 @@
                         {% endif %}
                     </div>
                 </div>
-                
+
                 <!-- Property Details -->
                 <div class="card mb-5">
                     <div class="card-body">
@@ -49,66 +81,46 @@
                                 <h3 class="text-primary mb-0">₹{{ property.price|intcomma }}</h3>
                             </div>
                         </div>
-                        
+
                         <div class="row mb-4">
                             <div class="col-md-6">
-                                <div class="property-feature">
-                                    <div class="feature-icon">
-                                        <i class="fas fa-home"></i>
-                                    </div>
-                                    <div>
-                                        <h6 class="mb-0">Property Type</h6>
-                                        <p class="text-muted mb-0">{{ property.get_property_type_display }}</p>
-                                    </div>
+                                <div class="property-feature mb-3">
+                                    <i class="fas fa-home me-2 text-secondary"></i>
+                                    <strong>Property Type:</strong> {{ property.get_property_type_display }}
                                 </div>
                                 {% if property.bedrooms %}
-                                <div class="property-feature">
-                                    <div class="feature-icon">
-                                        <i class="fas fa-bed"></i>
-                                    </div>
-                                    <div>
-                                        <h6 class="mb-0">Bedrooms</h6>
-                                        <p class="text-muted mb-0">{{ property.bedrooms }}</p>
-                                    </div>
+                                <div class="property-feature mb-3">
+                                    <i class="fas fa-bed me-2 text-secondary"></i>
+                                    <strong>Bedrooms:</strong> {{ property.bedrooms }}
                                 </div>
                                 {% endif %}
                             </div>
                             <div class="col-md-6">
                                 {% if property.bathrooms %}
-                                <div class="property-feature">
-                                    <div class="feature-icon">
-                                        <i class="fas fa-bath"></i>
-                                    </div>
-                                    <div>
-                                        <h6 class="mb-0">Bathrooms</h6>
-                                        <p class="text-muted mb-0">{{ property.bathrooms }}</p>
-                                    </div>
+                                <div class="property-feature mb-3">
+                                    <i class="fas fa-bath me-2 text-secondary"></i>
+                                    <strong>Bathrooms:</strong> {{ property.bathrooms }}
                                 </div>
                                 {% endif %}
-                                <div class="property-feature">
-                                    <div class="feature-icon">
-                                        <i class="fas fa-ruler-combined"></i>
-                                    </div>
-                                    <div>
-                                        <h6 class="mb-0">Area</h6>
-                                        <p class="text-muted mb-0">{{ property.area }} m²</p>
-                                    </div>
+                                <div class="property-feature mb-3">
+                                    <i class="fas fa-ruler-combined me-2 text-secondary"></i>
+                                    <strong>Area:</strong> {{ property.area }} m²
                                 </div>
                             </div>
                         </div>
-                        
+
                         <h4 class="mb-3">Description</h4>
                         <p class="mb-4">{{ property.description }}</p>
-                        
+
                         <h4 class="mb-3">Address</h4>
                         <p class="mb-4">{{ property.address }}</p>
-                        
+
                         <div class="map-container mb-4" style="height: 300px; background-color: #eee; display: flex; align-items: center; justify-content: center;">
                             <p class="text-muted">Map would be displayed here</p>
                         </div>
                     </div>
                 </div>
-                
+
                 <!-- Features & Amenities -->
                 <div class="card mb-5">
                     <div class="card-body">
@@ -116,25 +128,26 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <ul class="list-unstyled">
-                                    <li class="mb-2"><i class="fas fa-check text-secondary me-2"></i> Swimming Pool</li>
-                                    <li class="mb-2"><i class="fas fa-check text-secondary me-2"></i> Gym</li>
-                                    <li class="mb-2"><i class="fas fa-check text-secondary me-2"></i> Security System</li>
-                                    <li class="mb-2"><i class="fas fa-check text-secondary me-2"></i> Central Air Conditioning</li>
+                                    <li><i class="fas fa-check text-success me-2"></i> Swimming Pool</li>
+                                    <li><i class="fas fa-check text-success me-2"></i> Gym</li>
+                                    <li><i class="fas fa-check text-success me-2"></i> Security System</li>
+                                    <li><i class="fas fa-check text-success me-2"></i> Central Air Conditioning</li>
                                 </ul>
                             </div>
                             <div class="col-md-6">
                                 <ul class="list-unstyled">
-                                    <li class="mb-2"><i class="fas fa-check text-secondary me-2"></i> Garage (2 cars)</li>
-                                    <li class="mb-2"><i class="fas fa-check text-secondary me-2"></i> Garden</li>
-                                    <li class="mb-2"><i class="fas fa-check text-secondary me-2"></i> Smart Home System</li>
-                                    <li class="mb-2"><i class="fas fa-check text-secondary me-2"></i> Walk-in Closet</li>
+                                    <li><i class="fas fa-check text-success me-2"></i> Garage (2 cars)</li>
+                                    <li><i class="fas fa-check text-success me-2"></i> Garden</li>
+                                    <li><i class="fas fa-check text-success me-2"></i> Smart Home System</li>
+                                    <li><i class="fas fa-check text-success me-2"></i> Walk-in Closet</li>
                                 </ul>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            
+
+            <!-- Sidebar -->
             <div class="col-lg-4">
                 <!-- Contact Form -->
                 <div class="card mb-4">
@@ -160,30 +173,24 @@
                         </form>
                     </div>
                 </div>
-                
+
                 <!-- Agent Info -->
                 <div class="card mb-4">
                     <div class="card-header bg-primary text-white">
                         <h5 class="mb-0">Listing Agent</h5>
                     </div>
                     <div class="card-body text-center">
-                        <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Agent" class="agent-img">
+                        <img src="{% static 'image/senior_cons.png' %}" alt="Agent" class="img-fluid " width="100">
                         <h5>Robert Johnson</h5>
                         <p class="text-muted">Senior Property Consultant</p>
                         <div class="d-flex justify-content-center">
-                            <a href="#" class="btn btn-sm btn-outline-secondary me-2">
-                                <i class="fas fa-phone-alt"></i>
-                            </a>
-                            <a href="#" class="btn btn-sm btn-outline-secondary me-2">
-                                <i class="fas fa-envelope"></i>
-                            </a>
-                            <a href="#" class="btn btn-sm btn-outline-secondary">
-                                <i class="fas fa-comment"></i>
-                            </a>
+                            <a href="#" class="btn btn-sm btn-outline-secondary me-2"><i class="fas fa-phone-alt"></i></a>
+                            <a href="#" class="btn btn-sm btn-outline-secondary me-2"><i class="fas fa-envelope"></i></a>
+                            <a href="#" class="btn btn-sm btn-outline-secondary"><i class="fas fa-comment"></i></a>
                         </div>
                     </div>
                 </div>
-                
+
                 <!-- Mortgage Calculator -->
                 <div class="card">
                     <div class="card-header bg-primary text-white">
@@ -192,11 +199,11 @@
                     <div class="card-body">
                         <div class="mb-3">
                             <label class="form-label">Home Value</label>
-                            <input type="text" class="form-control" value="${{ property.price|intcomma }}" readonly>
+                            <input type="text" class="form-control" value="₹{{ property.price|intcomma }}" readonly>
                         </div>
                         <div class="mb-3">
                             <label class="form-label">Down Payment</label>
-                            <input type="number" class="form-control" placeholder="$">
+                            <input type="number" class="form-control" placeholder="₹">
                         </div>
                         <div class="mb-3">
                             <label class="form-label">Loan Term (years)</label>
@@ -219,25 +226,25 @@
     </div>
 </section>
 
-<!-- Similar Properties -->
+<!-- Similar Properties Section -->
 <section class="py-5 bg-white">
     <div class="container">
         <h2 class="section-title">Similar Properties</h2>
         <div class="row">
             {% for property in similar_properties %}
             <div class="col-md-6 col-lg-3 mb-4">
-                <div class="property-card h-100">
+                <div class="property-card h-100 shadow-sm border rounded">
                     <div class="position-relative">
                         <img src="{{ property.main_photo.url }}" alt="{{ property.title }}" class="property-img">
                         <span class="property-badge">{{ property.get_transaction_type_display }}</span>
                     </div>
                     <div class="p-4">
-                        <h5>{{ property.title }}</h5>
+                        <h5 class="mb-2">{{ property.title }}</h5>
                         <p class="text-muted mb-3">
                             <i class="fas fa-map-marker-alt text-secondary me-2"></i>
                             {{ property.location }}, {{ property.city }}
                         </p>
-                        <div class="d-flex justify-content-between align-items-center">
+                        <div class="d-flex justify-content-between align-items-center mb-2">
                             <div>
                                 {% if property.bedrooms %}
                                 <span class="me-3"><i class="fas fa-bed text-secondary me-1"></i> {{ property.bedrooms }}</span>
@@ -246,14 +253,14 @@
                                 <span><i class="fas fa-bath text-secondary me-1"></i> {{ property.bathrooms }}</span>
                                 {% endif %}
                             </div>
-                            <span class="property-price">${{ property.price|intcomma }}</span>
+                            <span class="property-price">₹{{ property.price|intcomma }}</span>
                         </div>
-                    </div>
-                    <div class="px-4 pb-4 pt-2">
                         <a href="{% url 'property_detail' property.pk %}" class="btn btn-primary-custom w-100">View Details</a>
                     </div>
                 </div>
             </div>
+            {% empty %}
+            <p class="text-muted">No similar properties available.</p>
             {% endfor %}
         </div>
     </div>
@@ -263,19 +270,11 @@
 {% block extra_js %}
 <script>
     function changeMainImage(element, imageUrl) {
-        // Update main image
         document.querySelector('.main-image img').src = imageUrl;
-        
-        // Update active thumbnail
         document.querySelectorAll('.thumbnail').forEach(thumb => {
             thumb.classList.remove('active');
         });
         element.classList.add('active');
     }
-    
-    // Simple mortgage calculator functionality would go here
-    document.addEventListener('DOMContentLoaded', function() {
-        // Initialize any additional JavaScript for this page
-    });
 </script>
 {% endblock %}
